@@ -1,71 +1,49 @@
 import { useEditor, Element } from '@craftjs/core';
-import { Box, Typography, Grid, Button as MaterialButton } from '@mui/material';
 import React from 'react';
 
 import { Button } from './user/Button';
 import { Card } from './user/Card';
 import { Container } from './user/Container';
 import { Text } from './user/Text';
+import { BootstrapAccordion as Accordion } from './user/Accordion';
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
 
   return (
-    <Box px={2} py={2}>
-      <Grid
-        container
-        direction="column"
-        alignItems="center"
-        justify="center"
-        spacing={1}
-      >
-        <Box pb={2}>
-          <Typography>Drag to add</Typography>
-        </Box>
-        <Grid container direction="column" item>
-          <MaterialButton
-            ref={(ref) =>
-              connectors.create(ref, <Button text="Click me" size="small" />)
-            }
-            variant="contained"
-            data-cy="toolbox-button"
-          >
-            Button
-          </MaterialButton>
-        </Grid>
-        <Grid container direction="column" item>
-          <MaterialButton
-            ref={(ref) => connectors.create(ref, <Text text="Hi world" />)}
-            variant="contained"
-            data-cy="toolbox-text"
-          >
-            Text
-          </MaterialButton>
-        </Grid>
-        <Grid container direction="column" item>
-          <MaterialButton
-            ref={(ref) =>
-              connectors.create(
-                ref,
-                <Element canvas is={Container} padding={20} />
-              )
-            }
-            variant="contained"
-            data-cy="toolbox-container"
-          >
-            Container
-          </MaterialButton>
-        </Grid>
-        <Grid container direction="column" item>
-          <MaterialButton
-            ref={(ref) => connectors.create(ref, <Card />)}
-            variant="contained"
-            data-cy="toolbox-card"
-          >
-            Card
-          </MaterialButton>
-        </Grid>
-      </Grid>
-    </Box>
+      <div class="d-grid gap-2 col-10 mx-auto p-3">
+        <h5 class="text-center">Drag to add</h5>
+        <button class="btn btn-primary" type="button" 
+          ref={(ref) => connectors.create(ref, <Button text="Click me" size="small" />)}
+        >
+          Button
+        </button>
+        <button class="btn btn-primary" type="button" 
+          ref={(ref) => connectors.create(ref, <Text text="Hi world" />)}
+        >
+          Text
+        </button>
+        <button class="btn btn-primary" type="button" 
+          ref={(ref) =>
+            connectors.create(
+              ref,
+              <Element canvas is={Container} padding={20} />
+            )
+          }
+        >
+          Container
+        </button>
+        <button class="btn btn-primary" type="button" 
+          ref={(ref) => connectors.create(ref, <Card />)}
+        >
+          Card
+        </button>
+
+        <button class="btn btn-primary" type="button" 
+          ref={(ref) => connectors.create(ref, <Accordion />)}
+        >
+          Accordion
+        </button>
+      </div>
   );
 };

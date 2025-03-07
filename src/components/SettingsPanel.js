@@ -1,11 +1,4 @@
 import { useEditor } from '@craftjs/core';
-import {
-  Box,
-  Chip,
-  Grid,
-  Typography,
-  Button as MaterialButton,
-} from '@mui/material';
 import React from 'react';
 
 export const SettingsPanel = () => {
@@ -31,40 +24,29 @@ export const SettingsPanel = () => {
   });
 
   return isEnabled && selected ? (
-    <Box bgcolor="rgba(0, 0, 0, 0.06)" mt={2} px={2} py={2}>
-      <Grid container direction="column" spacing={0}>
-        <Grid item>
-          <Box pb={2}>
-            <Grid container alignItems="center">
-              <Grid item xs>
-                <Typography variant="subtitle1">Selected</Typography>
-              </Grid>
-              <Grid item>
-                <Chip
-                  size="small"
-                  color="primary"
-                  label={selected.name}
-                  data-cy="chip-selected"
-                />
-              </Grid>
-            </Grid>
-          </Box>
-        </Grid>
+    <div class="container text-center p-2" bgcolor="rgba(0, 0, 0, 0.06)" >
+      <div class="row">
+        <div class="col">
+          <div class="row text-center">
+            <div class="col-6">
+              <h5 variant="subtitle1">Selected</h5>
+            </div>
+            <div class="col-6">
+              <button type="button" class="btn btn-info">{selected.name}</button>
+            </div>
+          </div>
+        </div>
         <div data-cy="settings-panel">
           {selected.settings && React.createElement(selected.settings)}
         </div>
         {selected.isDeletable ? (
-          <MaterialButton
-            variant="contained"
-            color="default"
-            onClick={() => {
+          <div class="col">
+            <button type="button" class="btn btn-secondary" onClick={() => {
               actions.delete(selected.id);
-            }}
-          >
-            Delete
-          </MaterialButton>
+            }} >Delete</button>
+          </div>
         ) : null}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   ) : null;
 };
