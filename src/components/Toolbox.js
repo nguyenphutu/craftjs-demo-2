@@ -1,49 +1,70 @@
 import { useEditor, Element } from '@craftjs/core';
+import {
+  Container as BootstrapContainer,
+  Row,
+  Col,
+  Badge,
+  Button as BootstrapButton,
+  Accordion,
+} from 'react-bootstrap';
 import React from 'react';
 
 import { Button } from './user/Button';
 import { Card } from './user/Card';
 import { Container } from './user/Container';
 import { Text } from './user/Text';
-import { BootstrapAccordion as Accordion } from './user/Accordion';
+import { BootstrapAccordion } from './user/Accordion';
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
 
   return (
-      <div class="d-grid gap-2 col-10 mx-auto p-3">
-        <h5 class="text-center">Drag to add</h5>
-        <button class="btn btn-primary" type="button" 
-          ref={(ref) => connectors.create(ref, <Button text="Click me" size="small" />)}
-        >
-          Button
-        </button>
-        <button class="btn btn-primary" type="button" 
-          ref={(ref) => connectors.create(ref, <Text text="Hi world" />)}
-        >
-          Text
-        </button>
-        <button class="btn btn-primary" type="button" 
-          ref={(ref) =>
-            connectors.create(
-              ref,
-              <Element canvas is={Container} padding={20} />
-            )
-          }
-        >
-          Container
-        </button>
-        <button class="btn btn-primary" type="button" 
-          ref={(ref) => connectors.create(ref, <Card />)}
-        >
-          Card
-        </button>
-
-        <button class="btn btn-primary" type="button" 
-          ref={(ref) => connectors.create(ref, <Accordion />)}
-        >
-          Accordion
-        </button>
-      </div>
+    <BootstrapContainer style={{ padding: 16}}>
+      <Row>
+        <Col style={{ paddingBottom: 16, textAlign: 'center'}}>
+          <h5>Drag to add</h5>
+        </Col>
+        <div className="d-grid gap-2">
+          <BootstrapButton
+            ref={(ref) =>
+              connectors.create(ref, <Button text="Click me" size="small" />)
+            }
+            variant="primary"
+          >
+            Button
+          </BootstrapButton>
+          <BootstrapButton
+            ref={(ref) => connectors.create(ref, <Text text="Hi world" />)}
+            variant="primary"
+          >
+            Text
+          </BootstrapButton>
+          <BootstrapButton
+            ref={(ref) =>
+              connectors.create(
+                ref,
+                <Element canvas is={Container} padding={20} />
+              )
+            }
+            variant="primary"
+          >
+            Container
+          </BootstrapButton>
+          
+          <BootstrapButton
+            ref={(ref) => connectors.create(ref, <Card />)}
+            variant="primary"
+          >
+            Card
+          </BootstrapButton>
+          <BootstrapButton
+            ref={(ref) => connectors.create(ref, <BootstrapAccordion />)}
+            variant="primary"
+          >
+            Bootstrap Accordion
+          </BootstrapButton>
+        </div>
+      </Row>
+    </BootstrapContainer>
   );
 };

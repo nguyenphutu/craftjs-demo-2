@@ -10,7 +10,7 @@ import { Button } from '../components/user/Button';
 import { Card, CardBottom, CardTop } from '../components/user/Card';
 import { Container } from '../components/user/Container';
 import { Text } from '../components/user/Text';
-import { BootstrapAccordion as Accordion  } from '../components/user/Accordion';
+import { BootstrapAccordion  } from '../components/user/Accordion';
 
 export default function App() {
   return (
@@ -26,7 +26,7 @@ export default function App() {
           Container,
           CardTop,
           CardBottom,
-          Accordion
+          BootstrapAccordion
         }}
       >
         <Topbar />
@@ -44,7 +44,7 @@ export default function App() {
                   <Card data-cy="frame-card" />
                   <Button text="Click me" size="small" data-cy="frame-button" />
                   <Text fontSize={20} text="Hi world!" data-cy="frame-text" />
-                  <Accordion
+                  <BootstrapAccordion
                     items={[
                       { title: 'Item 1', content: 'Content 1' }
                     ]}

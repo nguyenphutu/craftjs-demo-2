@@ -3,7 +3,7 @@ import {
   Box,
   FormControlLabel,
   Switch,
-  Grid2 as Grid,
+  Grid,
   Button as MaterialButton,
   Dialog,
   DialogTitle,

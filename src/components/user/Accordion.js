@@ -7,21 +7,19 @@ import { Accordion } from 'react-bootstrap';
 
 
 export const BootstrapAccordion = ({ background, padding = 20, ...props }) => {
-  const [items] = useState([
-    { id: 1, title: "Item 1", content: "Nội dung của Item 1" },
-    { id: 2, title: "Item 2", content: "Nội dung của Item 2" },
-  ]);
   return (
-    <div className="container">
-      <Accordion defaultActiveKey="0">
-        {items.map((item, index) => (
-          <Accordion.Item eventKey={String(index)} key={item.id}>
-            <Accordion.Header>{item.title}</Accordion.Header>
-            <Accordion.Body>{item.content}</Accordion.Body>
-          </Accordion.Item>
-        ))}
-      </Accordion>
-    </div>
+    <Accordion>
+        <Accordion.Item eventKey={0}>
+          <Accordion.Header>Accordion Item #1</Accordion.Header>
+          <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.</Accordion.Body>
+        </Accordion.Item>
+    </Accordion>
   );
 };
 
