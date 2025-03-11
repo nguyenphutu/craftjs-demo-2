@@ -10,7 +10,8 @@ import { Button } from '../components/user/Button';
 import { Card, CardBottom, CardTop } from '../components/user/Card';
 import { Container } from '../components/user/Container';
 import { Text } from '../components/user/Text';
-import { BootstrapAccordion  } from '../components/user/Accordion';
+import { AccordionMain as BootstrapAccordion, Accordion  } from '../components/user/Accordion';
+import { AccordionItem } from '../components/user/AccordionItem';
 
 export default function App() {
   return (
@@ -26,7 +27,9 @@ export default function App() {
           Container,
           CardTop,
           CardBottom,
-          BootstrapAccordion
+          BootstrapAccordion,
+          AccordionItem,
+          Accordion
         }}
       >
         <Topbar />
@@ -44,12 +47,7 @@ export default function App() {
                   <Card data-cy="frame-card" />
                   <Button text="Click me" size="small" data-cy="frame-button" />
                   <Text fontSize={20} text="Hi world!" data-cy="frame-text" />
-                  <BootstrapAccordion
-                    items={[
-                      { title: 'Item 1', content: 'Content 1' }
-                    ]}
-                    data-cy="frame-accordion"
-                  />
+                  <BootstrapAccordion/>
                   <Element
                     canvas
                     is={Container}

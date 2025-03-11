@@ -1,29 +1,42 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNode, Element } from '@craftjs/core';
+import { Accordion as BootstrapAccordion } from 'react-bootstrap';
+import { AccordionItem } from './AccordionItem';
 import {
+  Container,
   ContainerSettings,
   ContainerDefaultProps,
 } from './Container';
-import { Accordion } from 'react-bootstrap';
 
-
-export const BootstrapAccordion = ({ background, padding = 20, ...props }) => {
+export const Accordion = ({ children, ...props }) => {
+  const {
+    connectors: { connect },
+  } = useNode();
   return (
-    <Accordion>
-        <Accordion.Item eventKey={0}>
-          <Accordion.Header>Accordion Item #1</Accordion.Header>
-          <Accordion.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.</Accordion.Body>
-        </Accordion.Item>
-    </Accordion>
+    <BootstrapAccordion {...props} style={{ padding: '10px 0' }} ref={connect}>
+      {children}
+    </BootstrapAccordion>
   );
 };
 
-BootstrapAccordion.craft = {
+Accordion.craft = {
+  rules: {
+    canMoveIn: (incomingNodes) =>
+      incomingNodes.every((incomingNode) => incomingNode.data.type === AccordionItem),
+  },
+};
+
+export const AccordionMain = ({ background, padding = 20, ...props }) => {
+  return (
+    <Container {...props} background={background} padding={padding}>
+      <Element canvas id="accordion" is={Accordion} data-cy="accordion">
+        <AccordionItem title= 'Accordion Item Title' content= 'Accordion Item Content'/>
+      </Element>
+    </Container>
+  );
+};
+
+AccordionMain.craft = {
   props: ContainerDefaultProps,
   related: {
     settings: ContainerSettings,

@@ -3,9 +3,7 @@ import {
   Container as BootstrapContainer,
   Row,
   Col,
-  Badge,
   Button as BootstrapButton,
-  Accordion,
 } from 'react-bootstrap';
 import React from 'react';
 
@@ -13,7 +11,8 @@ import { Button } from './user/Button';
 import { Card } from './user/Card';
 import { Container } from './user/Container';
 import { Text } from './user/Text';
-import { BootstrapAccordion } from './user/Accordion';
+import { Accordion as BootstrapAccordion } from './user/Accordion';
+import { AccordionItem } from './user/AccordionItem';
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
@@ -62,6 +61,13 @@ export const Toolbox = () => {
             variant="primary"
           >
             Bootstrap Accordion
+          </BootstrapButton>
+
+          <BootstrapButton
+            ref={(ref) => connectors.create(ref, <AccordionItem />)}
+            variant="primary"
+          >
+            Accordion Item
           </BootstrapButton>
         </div>
       </Row>
