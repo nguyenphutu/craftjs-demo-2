@@ -2,37 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useNode, Element } from '@craftjs/core';
 import { Accordion as BootstrapAccordion } from 'react-bootstrap';
 import { AccordionItem } from './AccordionItem';
-import {
-  Container,
-  ContainerSettings,
-  ContainerDefaultProps,
-} from './Container';
 
 export const Accordion = ({ children, ...props }) => {
   const {
-    connectors: { connect },
-    actions: { setProp },
-  } = useNode((node) => ({
-    itemCount: node.data.props.itemCount,
-  }));
-
-  const [itemCount, setItemCount] = useState(props.itemCount || 0);
-
-  useEffect(() => {
-    setProp((props) => (props.itemCount = itemCount));
-  }, [itemCount, setProp]);
+    connectors: { connect, drag },
+  } = useNode();
 
   return (
-    <BootstrapAccordion {...props} style={{ padding: '10px 0' }} ref={connect}>
+    <BootstrapAccordion {...props} style={{ padding: '5px 0' }} ref={ref => connect(drag(ref))}>
       {children}
     </BootstrapAccordion>
   );
 };
 
 Accordion.craft = {
-  props: {
-    itemCount: 0,
-  },
   rules: {
     canMoveIn: (incomingNodes) => {
       incomingNodes.forEach((incomingNode) => {
@@ -43,19 +26,10 @@ Accordion.craft = {
   },
 };
 
-export const AccordionMain = ({ background, padding = 20, ...props }) => {
+export const AccordionMain = () => {
   return (
-    <Container {...props} background={background} padding={padding}>
-      <Element canvas id="accordion" is={Accordion} data-cy="accordion">
-        <AccordionItem id="1" title='Accordion Item Title' content='Accordion Item Content' />
-      </Element>
-    </Container>
+    <Element canvas id="accordion" is={Accordion} data-cy="accordion">
+      <AccordionItem id="1" title='Accordion Item Title' content='Accordion Item Content' />
+    </Element>
   );
-};
-
-AccordionMain.craft = {
-  props: ContainerDefaultProps,
-  related: {
-    settings: ContainerSettings,
-  },
 };
