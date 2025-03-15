@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useNode, Element } from '@craftjs/core';
 import { Accordion as BootstrapAccordion } from 'react-bootstrap';
 import { AccordionItem } from './AccordionItem';
