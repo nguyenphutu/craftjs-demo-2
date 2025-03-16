@@ -1,7 +1,17 @@
 import React from 'react';
-import { useNode } from '@craftjs/core';
+import { useNode, Element } from '@craftjs/core';
 import { Accordion as BootstrapAccordion, Form } from 'react-bootstrap';
 import { Text } from './Text';
+
+export const AccordionItemBody = ({ children }) => {
+  const { connectors: { connect, drag } } = useNode();
+
+  return (
+    <BootstrapAccordion.Body ref={ref => connect(drag(ref))}>
+      {children}
+    </BootstrapAccordion.Body>
+  );
+}
 
 export const AccordionItem = ({ id, title, content }) => {
   const { connectors: { connect, drag } } = useNode();
@@ -11,9 +21,9 @@ export const AccordionItem = ({ id, title, content }) => {
       <BootstrapAccordion.Header>
         <Text text={title} fontSize={20} />
       </BootstrapAccordion.Header>
-      <BootstrapAccordion.Body>
+      <Element canvas id="accordion-item-body" is={AccordionItemBody}>
         <Text text={content} fontSize={14} />
-      </BootstrapAccordion.Body>
+      </Element>
     </BootstrapAccordion.Item>
   );  
 };

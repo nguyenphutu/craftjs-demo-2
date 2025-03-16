@@ -13,6 +13,7 @@ import { Container } from './user/Container';
 import { Text } from './user/Text';
 import { AccordionMain as BootstrapAccordion } from './user/Accordion';
 import { AccordionItem } from './user/AccordionItem';
+import { Table } from './user/Table';
 
 export const Toolbox = () => {
   const { connectors } = useEditor();
@@ -55,6 +56,12 @@ export const Toolbox = () => {
             variant="primary"
           >
             Card
+          </BootstrapButton>
+          <BootstrapButton
+            ref={(ref) => connectors.create(ref, <Table />)}
+            variant="primary"
+          >
+            Table
           </BootstrapButton>
           <BootstrapButton
             ref={(ref) => connectors.create(ref, <BootstrapAccordion />)}
