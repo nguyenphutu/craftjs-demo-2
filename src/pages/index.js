@@ -10,8 +10,9 @@ import { Button } from '../components/user/Button';
 import { Card, CardBottom, CardTop } from '../components/user/Card';
 import { Container } from '../components/user/Container';
 import { Text } from '../components/user/Text';
-import { AccordionMain as BootstrapAccordion, Accordion  } from '../components/user/Accordion';
-import { AccordionItem } from '../components/user/AccordionItem';
+import { AccordionMain, Accordion  } from '../components/user/Accordion';
+import { AccordionItem, AccordionItemBody } from '../components/user/AccordionItem';
+import { Table } from '../components/user/Table';
 
 export default function App() {
   return (
@@ -27,9 +28,11 @@ export default function App() {
           Container,
           CardTop,
           CardBottom,
-          BootstrapAccordion,
+          AccordionMain,
           AccordionItem,
-          Accordion
+          Accordion,
+          AccordionItemBody,
+          Table
         }}
       >
         <Topbar />
@@ -47,7 +50,7 @@ export default function App() {
                   <Card data-cy="frame-card" />
                   <Button text="Click me" size="small" data-cy="frame-button" />
                   <Text fontSize={20} text="Hi world!" data-cy="frame-text" />
-                  <BootstrapAccordion/>
+                  <AccordionMain/>
                   <Element
                     canvas
                     is={Container}

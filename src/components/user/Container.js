@@ -2,6 +2,7 @@ import { useNode } from '@craftjs/core';
 import { Slider, Paper, FormControl, FormLabel } from '@mui/material';
 import React from 'react';
 import { HexColorPicker } from 'react-colorful';
+import { AccordionItem } from './AccordionItem';
 
 export const Container = ({ background, padding, children, ...props }) => {
   const {
@@ -62,5 +63,9 @@ Container.craft = {
   props: ContainerDefaultProps,
   related: {
     settings: ContainerSettings,
+  },
+  rules: {
+    canMoveIn: (incomingNodes) =>
+      incomingNodes.every((incomingNode) => incomingNode.data.type !== AccordionItem),
   },
 };
